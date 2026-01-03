@@ -1,0 +1,27 @@
+# Login & Signup App 🔐
+
+## Project Description
+This project implements a Login and Signup application using Firebase Authentication.
+
+## Features
+- Email & Password Signup
+- Login functionality
+- Form validation and error messages
+- Password reset option
+- Protected profile page (only for logged-in users)
+- Logout functionality
+- Optional Google Sign-In
+
+## Technologies Used
+- HTML
+- CSS
+- JavaScript
+- Firebase Authentication
+
+## How to Run
+1. Clone the repository
+2. Open `index.html` in a browser
+3. Configure Firebase credentials
+
+## Author
+Geetha Loganathan
