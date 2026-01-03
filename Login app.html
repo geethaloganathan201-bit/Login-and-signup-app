@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login & Signup App</title>
+
+<style>
+body{
+ font-family: Arial;
+ background:#1b1b3a;
+ color:white;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ height:100vh;
+}
+
+.container{
+ background:#27275c;
+ padding:30px;
+ width:350px;
+ border-radius:10px;
+ box-shadow:0 0 20px rgba(0,0,0,.5);
+}
+
+h2{text-align:center;}
+
+input{
+ width:100%;
+ padding:10px;
+ margin-top:10px;
+ border-radius:5px;
+ border:none;
+ outline:none;
+}
+
+button{
+ width:100%;
+ background:#00d4ff;
+ border:none;
+ padding:10px;
+ margin-top:15px;
+ border-radius:5px;
+ font-size:16px;
+ cursor:pointer;
+}
+
+a{
+ color:#00d4ff;
+ cursor:pointer;
+}
+
+#profile{
+ text-align:center;
+ display:none;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- SIGNUP -->
+<div id="signupBox">
+<h2>Signup</h2>
+<input type="text" id="sname" placeholder="Enter Name">
+<input type="email" id="semail" placeholder="Enter Email">
+<input type="password" id="spass" placeholder="Enter Password">
+<button onclick="signup()">Create Account</button>
+<p>Already have account? <a onclick="showLogin()">Login</a></p>
+<p id="smsg"></p>
+</div>
+
+<!-- LOGIN -->
+<div id="loginBox" style="display:none;">
+<h2>Login</h2>
+<input type="email" id="lemail" placeholder="Enter Email">
+<input type="password" id="lpass" placeholder="Enter Password">
+<button onclick="login()">Login</button>
+<p>Create new account? <a onclick="showSignup()">Signup</a></p>
+<p id="lmsg"></p>
+</div>
+
+<!-- PROFILE -->
+<div id="profile">
+<h2>Welcome 💙</h2>
+<h3 id="pname"></h3>
+<p id="pmail"></p>
+<button onclick="logout()">Logout</button>
+</div>
+
+</div>
+
+<script>
+function showLogin(){
+ document.getElementById("signupBox").style.display="none";
+ document.getElementById("loginBox").style.display="block";
+}
+
+function showSignup(){
+ document.getElementById("loginBox").style.display="none";
+ document.getElementById("signupBox").style.display="block";
+}
+
+function signup(){
+ let name=document.getElementById("sname").value;
+ let email=document.getElementById("semail").value;
+ let pass=document.getElementById("spass").value;
+
+ if(name=="" || email=="" || pass==""){
+  document.getElementById("smsg").innerHTML="All fields required ❌";
+  return;
+}
+
+localStorage.setItem("userName",name);
+localStorage.setItem("userEmail",email);
+localStorage.setItem("userPass",pass);
+
+document.getElementById("smsg").innerHTML="Signup Successful ✅";
+alert("Account Created Successfully 🎉");
+showLogin();
+}
+
+function login(){
+ let email=document.getElementById("lemail").value;
+ let pass=document.getElementById("lpass").value;
+
+ let e=localStorage.getItem("userEmail");
+ let p=localStorage.getItem("userPass");
+
+ if(email==e && pass==p){
+  document.getElementById("loginBox").style.display="none";
+  document.getElementById("profile").style.display="block";
+
+  document.getElementById("pname").innerHTML=localStorage.getItem("userName");
+  document.getElementById("pmail").innerHTML=localStorage.getItem("userEmail");
+ }
+
+ else{
+  document.getElementById("lmsg").innerHTML="Invalid Email or Password ❌";
+ }
+}
+
+function logout(){
+ document.getElementById("profile").style.display="none";
+ showLogin();
+}
+</script>
+
+</body>
+</html>
